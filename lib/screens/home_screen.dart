@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gpt_flutter/models/todo.dart';
 import 'package:gpt_flutter/screens/chat_screen.dart';
+// import 'package:gpt_flutter/screens/hoenew.dart';
 import 'package:gpt_flutter/screens/image_generator.dart';
 import 'package:gpt_flutter/screens/translator.dart';
 import 'package:gpt_flutter/widgets/todo_item.dart';
@@ -19,52 +20,82 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   get child => null;
+  int _selectedIndex = 0;  
+
+  List<Widget> mylist = [
+    Home(),
+    ChatScreen(),
+    ImageGeneratorScreen(),
+    Home(),
+    TranslatorDemo(),
+  ];
+
+    void _onItemTapped(int index) {  
+    setState(() {  
+      _selectedIndex = index;  
+    });  
+  }  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          backgroundColor:
-              const Color.fromRGBO(35, 103, 249, 1), // elevation: 0,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text('TASK-EASY',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 25)),
-              Container(
-                height: 40,
-                width: 40,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20),
-                  child: Image.asset('assets/img1.jpg'),
-                ),
+        backgroundColor: const Color.fromRGBO(35, 103, 249, 1), // elevation: 0,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('TASK-EASY',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25)),
+            Container(
+              height: 40,
+              width: 40,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset('assets/img1.jpg'),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
       body: Column(
         children: [
           Container(
             margin: const EdgeInsets.only(top: 30),
             child: AnimatedTextKit(
               animatedTexts: [
-                TypewriterAnimatedText('WELCOME GUYS',textStyle: TextStyle(fontSize: 35,fontWeight: FontWeight.w300, fontFamily: ' Disposable Droid BB',color: Color.fromARGB(255, 35, 195, 201)),
-                speed: Duration(milliseconds: 100)),
-                TypewriterAnimatedText('TO AI PLANET!',textStyle: TextStyle(fontSize: 35,fontWeight: FontWeight.w300, fontFamily: ' Disposable Droid BB',color: Color.fromARGB(255, 35, 195, 201)),
-                speed: Duration(milliseconds: 100)),
-                TypewriterAnimatedText('How Can I Assist You!!',textStyle: TextStyle(fontSize: 35,fontWeight: FontWeight.w300, fontFamily: ' Disposable Droid BB',color: Color.fromARGB(255, 35, 195, 201)),
-                speed: Duration(milliseconds: 200)),
+                TypewriterAnimatedText('WELCOME GUYS',
+                    textStyle: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.w300,
+                        fontFamily: ' Disposable Droid BB',
+                        color: Color.fromARGB(255, 35, 195, 201)),
+                    speed: Duration(milliseconds: 100)),
+                TypewriterAnimatedText('TO AI PLANET!',
+                    textStyle: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.w300,
+                        fontFamily: ' Disposable Droid BB',
+                        color: Color.fromARGB(255, 35, 195, 201)),
+                    speed: Duration(milliseconds: 100)),
+                TypewriterAnimatedText('How Can I Assist You!!',
+                    textStyle: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.w300,
+                        fontFamily: ' Disposable Droid BB',
+                        color: Color.fromARGB(255, 35, 195, 201)),
+                    speed: Duration(milliseconds: 200)),
               ],
-              ),
+            ),
           ),
           Center(
             // ),
             child: Container(
-            height: 500,
-            width: 700,
-            child: Image.asset('assets/img3.gif')
-            ),
-            ),
+                height: 500, width: 700, child: Image.asset('assets/img3.gif')),
+          ),
         ],
       ),
       bottomNavigationBar: CurvedNavigationBar(
